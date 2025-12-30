@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Username</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Edit Username {{user.role}}</h1>
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <input
+          type="text"
+          name="username"
+          value="{{ user.username }}"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -95,13 +95,29 @@ function addStudent($name, $age, $grade) {
     $db = connectDB();
     if ($db) {
         // Kode ini rentan terhadap SQL Injection karena tidak ada sanitasi input
+        // validasi
+        $name = trim($name);
+        $age = intval($age);
+        $grade = trim($grade);
+
+        $allowGrades = ['A', 'B', 'C', 'D', 'E'];
+        if (!in_array($grade, $allowGrades, true)) {
+            echo "Grade tidak valid.";
+            return;
+        }
+
+        $stmt = $db->prepare("INSERT INTO student (name, age, grade) VALUES (:name, :age, :grade)");
+        $stmt->bindvalue(':name', $name, SQLITE3_TEXT);
+        $stmt->bindvalue(':age', $age, SQLITE3_INTEGER);
+        $stmt->bindvalue(':grade', $grade, SQLITE3_TEXT);
 
         // Menyusun query untuk menambahkan data siswa tanpa sanitasi input
-        $query = "INSERT INTO student (name, age, grade) VALUES ('$name', '$age', '$grade')";
+        // $query = "INSERT INTO student (name, age, grade) VALUES ('$name', '$age', '$grade')";
         //$query = "DELETE from student where age != 999999";
         // Menjalankan query untuk menambahkan data siswa
-        $result = $db->exec($query);
+        // $result = $db->exec($query);
 
+        $result = $stmt->execute();
         if (!$result) {
             echo "Query gagal: " . $db->lastErrorMsg();
         } else {
@@ -117,10 +133,29 @@ function updateStudent($id, $name, $age, $grade) {
     $db = connectDB();
     if ($db) {
         // Menyusun query untuk menambahkan data siswa tanpa sanitasi input
+        // validasi
+        $id = intval($id);
+        $age = intval($age);
+        $grade = trim($grade);
+
+        // whitelist untuk grade (contoh)
+        $allowGrades = ['A', 'B', 'C', 'D', 'E'];
+        if ($id < 0 || !in_array($grade,  $allowGrades, true)) {
+            echo "Input tidak valid.";
+            return;
+        }
+
+        // $stmt = $db->prepare("UPDATE student SET name = :name, age = :age, grade = :grade WHERE id= :id");
+        // $stmt->bindValue(' :name', $name, SQLITE3_TEXT);
+        // $stmt->bindValue(' :age', $age, SQLITE3_INTEGER);
+        // $stmt->bindValue(' :grade', $grade, SQLITE3_TEXT);
+        // $stmt->bindValue(' :id', $id, SQLITE3_INTEGER);
+
         $query = "UPDATE student SET name = '$name', age = '$age', grade = '$grade' WHERE id=$id";
         // Menjalankan query untuk menambahkan data siswa
         $result = $db->exec($query);
 
+        // $result = $stmt->execute();
         if (!$result) {
             echo "Query gagal: " . $db->lastErrorMsg();
         } else {

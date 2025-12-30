@@ -50,7 +50,7 @@
                         <th>ID</th>
                         <th>Nama</th>
                         <th>Usia</th>
-                        <th>Kelas</th>
+                        <th>Grade</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -60,11 +60,18 @@
                         // $students = selectStudents();
                         if ($students) {
                             foreach ($students as $student) {
-                                echo "<tr>
+                                
+                                echo  "<tr>
                                     <td>" . $student['id'] . "</td>
                                     <td>" . $student['name'] . "</td>
                                     <td>" . $student['age'] . "</td>
                                     <td>" . $student['grade'] . "</td>
+
+                                    // <td>" . htmlspecialchars($student['id'], ENT_QUOTES, 'UTF-8') . "</td>
+                                    // <td>" . htmlspecialchars($student['name'], ENT_QUOTES, 'UTF-8') . "</td>
+                                    // <td>" . htmlspecialchars($student['age'], ENT_QUOTES, 'UTF-8') . "</td>
+                                    // <td>" . htmlspecialchars($student['grade'], ENT_QUOTES, 'UTF-8') . "</td>
+
                                     <td>
                                         <a href='edit.php?id=" . $student['id'] . "' class='btn btn-update'>Edit</a>
                                         <a href='delete.php?id=" . $student['id'] . "' class='btn btn-delete' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
@@ -83,17 +90,21 @@
     </div>
 
     <!-- PHP untuk menambahkan siswa -->
-    <?php
+    <?php 
     if (isset($_POST['add'])) {
         $name = $_POST['name'];
-        $age = $_POST['age'];
-        $grade = $_POST['grade'];
+        // $age = $_POST['age'];
+        // $grade = $_POST['grade'];
+        // $name = htmlspecialchars($_POST['name']);
+        $age = htmlspecialchars($_POST['age']);
+        $grade = htmlspecialchars($_POST['grade']);
         addStudent($name, $age, $grade);
     }
 
     // PHP untuk menghapus siswa berdasarkan ID
     if (isset($_GET['delete'])) {
-        $id = $_GET['delete'];
+        // $id = $_GET['delete'];
+        $id = htmlspecialchars($_GET['delete']);
         deleteStudent($id);
     }
     ?>

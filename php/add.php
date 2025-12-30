@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <form method="post" action="">
         <label for="name">Nama:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name"  required>
 
         <label for="age">Usia:</label>
         <input type="number" id="age" name="age" required>

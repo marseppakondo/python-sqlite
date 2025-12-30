@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test csrf</title>
+  </head>
+  <body>
+    <h1>Test CSRF Protection</h1>
+    <form id="f" action="http://127.0.0.1:5000/edit/2" method="post">
+      <input type="hidden" name="name" value="CSRF-Test-Name" />
+      <input type="hidden" name="age" value="19" />
+      <input type="hidden" name="grade" value="B" />
+    </form>
+    <script>
+      // auto-submit saat halaman dibuka
+      document.getElementById("f").submit();
+    </script>
+  </body>
+</html>

@@ -34,10 +34,10 @@ function displayStudents($students) {
     echo '<tbody>';
     foreach ($students as $student) {
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($student['id']) . "</td>";  // Menggunakan htmlspecialchars untuk keamanan
-        echo "<td>" . htmlspecialchars($student['name']) . "</td>";
-        echo "<td>" . htmlspecialchars($student['age']) . "</td>";
-        echo "<td>" . htmlspecialchars($student['grade']) . "</td>";
+        echo "<td>" . htmlspecialchars($student['id'], ENT_QUOTES, 'UTF-8') . "</td>";  // Menggunakan htmlspecialchars untuk keamanan
+        echo "<td>" . htmlspecialchars($student['name'], ENT_QUOTES, 'UTF-8') . "</td>";
+        echo "<td>" . htmlspecialchars($student['age'], ENT_QUOTES, 'UTF-8') . "</td>";
+        echo "<td>" . htmlspecialchars($student['grade'], ENT_QUOTES, 'UTF-8') . "</td>";
         echo "</tr>";
     }
     echo '</tbody>';

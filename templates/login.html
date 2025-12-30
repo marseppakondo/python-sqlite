@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <div
+      class="bg-light d-flex align-items-center justify-content-center"
+      style="height: 100vh"
+    >
+      <div class="w-25 p-4 bg-white rounded shadow text-center">
+        <h1>Login.</h1>
+        <form action="/login" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <input
+            name="username"
+            type="text"
+            class="form-control my-3"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            class="my-3 form-control"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

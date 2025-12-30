@@ -43,7 +43,7 @@
                 <label for="age">Usia:</label>
                 <input type="number" id="age" name="age" value="<?php echo $students[0]['age']; ?>" required>
 
-                <label for="grade">Nilai:</label>
+                <label for="grade">Grade:</label>
                 <input type="text" id="grade" name="grade" value="<?php echo $students[0]['grade']; ?>" required>
 
                 <button type="submit">Update Siswa</button>
